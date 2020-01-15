@@ -1,4 +1,5 @@
 import socket
+import time
 
 HEADERSIZE = 10
 
@@ -9,7 +10,8 @@ s.listen(5)
 while True:
     clientsocket, address = s.accept()
     print(f"connection from {address} has been established!")
-    msg = "welcome to the server, client!"
+    msg = "welcome to the server, client!\n"
+    msg += f"the time is {time.asctime()}"
     msg = f"{len(msg):<{HEADERSIZE}}" + msg
     clientsocket.send(bytes(msg, "utf-8"))
     clientsocket.close() 
